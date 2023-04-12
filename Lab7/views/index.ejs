@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="/node/css/style.css">
+  <script src="/node/js/javascript.js"></script>
+  <script src="https://d3js.org/d3.v4.js"></script>
+
+  <!--Local Development
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <script src="/js/javascript.js"></script>
+  <script src="/js/visualization.js"></script>
+  -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+  <!--For Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Josefin+Sans:wght@500&display=swap" rel="stylesheet">
+
+  
+  <title>Becky's Lab 7</title>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="bi bi-airplane-fill" viewBox="0 0 16 16">
+          <path d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849Z"/>
+        </svg>
+        becky's travel helper
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" onClick="document.getElementById('weather').scrollIntoView();">weather</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onClick="document.getElementById('itinerary').scrollIntoView();">activities</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onClick="document.getElementById('activity').scrollIntoView();">add</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onClick="document.getElementById('delete').scrollIntoView();">delete</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="title-picture">
+    <img src="/node/images/background.jpg" alt="Travel Image">
+
+    <h1 id="title" class="centered">let's go someplace fun!</h1>
+  </div>
+
+  <div id="weather1">
+    <h2 class="h2-title">where should we go? we should check the weather before we leave...</h2>
+    <form>
+      <div class="mb-3">
+        <label for="imputForLong" class="form-label">location</label>
+        <input type="text" class="form-control" aria-describedby="locationHelp" id="inputForLong">
+        <div id="locationHelp" class="form-text">enter a city, state, and/or country</div>
+      </div>
+    </form>
+    <button class="btn btn-primary" onClick="getLonAndLat();">get location</button>
+
+    <div id="forecast" style="display:none">
+      <div class="container text-center">
+        <div class="row align-items-start">
+          <div class="col" id="col1">
+            <h5 id="col1.dateTitle"></h5>
+            <p id="col1.date"></p>
+            <h5 id="col1.tempTitle"></h5>
+            <p id="col1.temp"></p>
+          </div>
+          <div class="col" id="col2">
+            <h5 id="col2.dateTitle"></h5>
+            <p id="col2.date"></p>
+            <h5 id="col2.tempTitle"></h5>
+            <p id="col2.temp"></p>
+          </div>
+          <div class="col" id="col3">
+            <h5 id="col3.dateTitle"></h5>
+            <p id="col3.date"></p>
+            <h5 id="col3.tempTitle"></h5>
+            <p id="col3.temp"></p>
+          </div>
+          <div class="col" id="col4">
+            <h5 id="col4.dateTitle"></h5>
+            <p id="col4.date"></p>
+            <h5 id="col4.tempTitle"></h5>
+            <p id="col4.temp"></p>
+          </div>
+          <div class="col" id="col5">
+            <h5 id="col5.dateTitle"></h5>
+            <p id="col5.date"></p>
+            <h5 id="col5.tempTitle"></h5>
+            <p id="col5.temp"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--This is the React Component that I am creating for Lab 5-->
+  <div id="reactComp">
+    <h2 class="h2-title">access the database of weather here!</h2>
+    <div id="reactButtons">
+      <div class="reactButton" id="buttonGET"></div>
+      <div class="reactButton" id="buttonPOST"></div>
+      <div class="reactButton" id="buttonPUT"></div>
+      <div class="reactButton" id="buttonDELETE"></div>
+    </div>
+  
+    <form class="reactForm">
+      <div class="mb-3">
+        <div id="number" class="inputLine" style="display:none;">
+          <div id="label0"></div>
+          <div id="input0"></div>
+        </div>
+
+        <div id="longitude" class="inputLine" style="display:none;">
+          <div id="label1"></div>
+          <div id="input1"></div>
+        </div>
+
+        <div id="latitude" class="inputLine" style="display:none;">
+          <div id="label2"></div>
+          <div id="input2"></div>
+        </div>
+
+        <div id="temperature" class="inputLine" style="display:none;">
+          <div id="label3"></div>
+          <div id="input3"></div>
+        </div>
+      </div>
+      <input style="display:none;" onclick="submitRequest()" type="button" id="submitButton" class="btn btn-primary" value="Submit">
+    </form>
+  </div>
+
+  <div id="dbInfo" style="display:none;">
+    <h2 class="h2-title">Results!</h2>
+    <p id="dbError"></p>
+    <p id="dbResults"></p>
+  </div>
+
+  <div id="visualization1">
+    <h2 class="h2-title">All the locations in the database.</h2>
+    <div id="visualbutton1" ></div>
+    <div id="reactvisual1" width="450" height="500"></div>
+  </div>
+
+  <div id="visualization2">
+    <h2 class="h2-title">All the average temperatures in the database.</h2>
+    <div id="visualbutton2" ></div>
+    <div id="reactvisual2" width="450" height="500"></div>
+  </div>
+
+  <!--For React-->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="/node/js/react.js"></script>
+  <script src="/node/js/visualization.js"></script>
+  <!--Local development
+  <script src="/js/react.js"></script
+  -->
+
+
+</body>
+
+</html>

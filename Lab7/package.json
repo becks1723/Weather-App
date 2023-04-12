@@ -1,0 +1,19 @@
+{
+  "name": "lab7",
+  "version": "1.0.0",
+  "description": "This is the Read Me file for Lab 6.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "d3": "^7.8.4",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0",
+    "nodemon": "^2.0.22"
+  }
+}

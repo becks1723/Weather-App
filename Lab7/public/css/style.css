@@ -1,0 +1,93 @@
+body {
+  background-color: #ebecee;
+  margin: 0;
+}
+
+.navbar {
+  background-color: #4d6672;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: larger;
+}
+
+#title {
+  text-align: center;
+  font-size: 80px;
+  color:  #a15c28;
+  font-family: 'Abril Fatface', cursive;
+}
+
+.title-picture {
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.title-picture img {
+  object-fit: contain;
+  width: 100%;
+  opacity: 0.5;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.h2-title {
+  text-align: center;
+  font-size: 30px;
+  color:  #223021;
+  font-family: 'Abril Fatface', cursive;
+}
+
+#reactComp, #weather1, #dbInfo, #visualization1, #visualization2{
+  width: 60%;
+  margin: auto;
+  padding: 50px;
+}
+
+#reactComp, #dbInfo, #visualization1, #visualization2 {
+  background-color: rgb(77, 102, 114, 0.4);
+  border-radius: 25px;
+  justify-content: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.centeredButtons {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#reactButtons {
+  width: 60%;
+  padding: 12px;
+  display: flex;
+  margin: auto;
+}
+
+.reactButton, .inputLine{
+  padding: 12px;
+}
+
+.inputLine {
+  display: flex;
+}
+
+h5 {
+  color:  #223021;
+  font-family: 'Abril Fatface', cursive;
+  font-size: 12px;
+}
+
+p {
+  font-family: 'Josefin Sans', sans-serif;
+  color:  #223021;
+  font-size: 14px;
+}
