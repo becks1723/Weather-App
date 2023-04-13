@@ -53,7 +53,7 @@ async function massDataOpenWeather(client) {
     //Generating random numbers for longitude and latitude
     var lon = Math.random() * (180 - -180) + -180;
     var lat = Math.random() * (90 - -90) + -90;
-    const data = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=ea31c08a40638bffd684a399bf18755d&units=imperial");
+    const data = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid={APITOKEN}&units=imperial");
     const dataParsed = await data.json();
    // console.log(dataParsed);
     const lon1 = dataParsed.coord.lon;
@@ -79,7 +79,7 @@ async function massDataWeatherAPI(client) {
     var lat = Math.random() * (90 - -90) + -90;
     lat = Math.round(lat * 100) / 100
     try {
-      const data = await fetch("https://api.weatherapi.com/v1/current.json?key=8fb9c0534d0742349bf162712232803&q=" + lat + "," + lon);
+      const data = await fetch("https://api.weatherapi.com/v1/current.json?key={APITOKEN}=" + lat + "," + lon);
       const dataParsed = await data.json();
       // console.log(dataParsed);
       const lon1 = dataParsed.location.lon;
