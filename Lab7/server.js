@@ -22,7 +22,7 @@ app.get('', (req, res) => {
   res.render('index')
 })
 
-const uri = "mongodb+srv://chenb9:TvyQR15iJi3fT4BI@cluster0.zbdis9x.mongodb.net/test";
+const uri = "mongodb+srv://chenb9:{MONGOPASSWORD}@cluster0.zbdis9x.mongodb.net/test";
 const client = new MongoClient(uri, {useNewUrlParser: true, useUnifiedTopology: true});
 
 //This part of the code connects to the backend!
