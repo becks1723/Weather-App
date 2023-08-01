@@ -35,7 +35,7 @@ async function displayVisuals(visual) {
   .then((res) => res.json())
   .then(data => {allData = data;});
   if(visual == 'getTemp') {
-    //console.log(allData);
+    console.log(allData);
     getTemperatures(allData);
   }
   if (visual == 'getWorld') {
